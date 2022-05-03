@@ -1,0 +1,113 @@
+*, *:after, *:before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	background-color: gray;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.field {
+	position: relative;
+	display: grid;
+}
+
+.cell {
+	position: relative;
+	height: 40px;
+	background-color: #FFF;
+	border: 1px solid #000;
+}
+
+.object,
+.enemy {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.enemy {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+}
+
+.enemy > div {
+	position: absolute;
+	width: var(--hp);
+	left: 0;
+	height: 4px;
+	transition: .25s;
+	background-color: #FF0000;
+	transform: translateY(-100%);
+}
+
+.enemy.target {
+	box-shadow: inset 0 0 12px 2px #FF0000;
+}
+
+.player {
+	position: absolute;
+	transition: .25s;
+	width: 40px;
+	height: 40px;
+	left: 0;
+	top: 0;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.bullet {
+	position: absolute;
+	width: 12px;
+	height: 24px;
+	opacity: 0;
+	transform: translateY(-50%) translateX(-50%);
+	transform-origin: 0 0;
+
+	background-image: url('../image/bullet.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	/*width: var(--width);*/
+}
+
+.bullet-shot {
+	animation: bullet-shot 1 .5s linear;
+}
+
+@keyframes bullet-shot {
+	1% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+		top: calc(var(--toY) + 20px);
+		left: calc(var(--toX) + 20px);
+	}
+}
+
+/*
+.arrow:after {
+	content: '';
+	position: absolute;
+	transform: translateY(-50%);
+	right: -15px;
+	top: 0;
+	width: 0;
+  height: 0;
+
+  border: 5px solid transparent;
+	border-left: solid 15px #FF0000;
+}
+*/
